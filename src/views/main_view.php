@@ -12,19 +12,19 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body> -->
-        <div class=" auth_modal modal fade text-white" id="modalAuth" tabindex="-1" role="dialog" aria-labelledby="modalAuthTitle" aria-hidden="true">
+        <div class="auth_modal modal fade text-white" id="modalAuth" tabindex="-1" role="dialog" aria-labelledby="modalAuthTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content py-5">
                     <div class="d-flex flex-column align-items-center">
                         <h3>Вхід</h3>
-                        <form class="py-4">
+                        <form class="py-4" action="/login" method="POST" >
                             <div class="form-group">
                                  <label for="inputEmail">Електронна адреса</label>
-                                 <input type="email" class="form-control" id="inputEmail"placeholder="Enter email">
+                                 <input type="email" name="email" class="form-control" id="inputEmail"placeholder="Enter email">
                             </div>
                             <div class="form-group">
                                 <label for="passField">Пароль</label>
-                                <input type="password" class="form-control" id="passField" placeholder="Password">
+                                <input type="password" name="password" class="form-control" id="passField" placeholder="Password">
                             </div>
                          <button type="submit" class="btn primary_btn d-block mx-auto">Вхід</button>
                         </form>
@@ -40,6 +40,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a class="navbar-brand" href="#">
+             
                   DeliverCLub
                 </a>
                 <div class="collapse navbar-collapse " id="navbarNav">
@@ -163,61 +164,7 @@
             
         </div>
     </section>
-    <footer class="page-footer font-small blue text-white py-5">
-            <div class="container text-center text-md-left">
-              <div class="row py-5">
-                <div class="col-md-6 mt-md-0 mt-3">
-                  <h5 class="mb-4">DeliveryClub</h5>
-                  <p class="gray-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore laudantium, accusantium non sapiente vitae exercitationem? Beatae, iste laborum voluptatibus aut odit commodi voluptatum repudiandae architecto impedit qui. Optio, repellat eveniet voluptas ducimus magnam non iusto natus tempore exercitationem, quae perspiciatis recusandae corporis ullam accusantium modi magni quod ex nemo numquam.</p>
-                  <span class="gray-text">deliveryclub@gmail.com</span>
-                </div>
-                <hr class="clearfix w-100 d-md-none pb-3">
-                <div class="col-md-3 mb-md-0 mb-3">
-                    <h5 class="text-uppercase">Links</h5>
-                    <ul class="list-unstyled">
-                      <li class="gray-text">
-                        <a class="gray-text" href="#!">Link 1</a>
-                      </li>
-                      <li>
-                        <a class="gray-text"  href="#!">Link 2</a>
-                      </li>
-                      <li>
-                        <a class="gray-text"  href="#!">Link 3</a>
-                      </li>
-                      <li>
-                        <a class="gray-text"  href="#!">Link 4</a>
-                      </li>
-                    </ul>      
-                  </div>
-                  <div class="col-md-3 mb-md-0 mb-3">
-                    <h5 class="text-uppercase">Links</h5>       
-                    <ul class="list-unstyled">
-                      <li>
-                        <a class="gray-text"  href="#!">Link 1</a>
-                      </li>
-                      <li>
-                        <a class="gray-text"  href="#!">Link 2</a>
-                      </li>
-                      <li>
-                        <a class="gray-text"  href="#!">Link 3</a>
-                      </li>
-                      <li>
-                        <a class="gray-text"  href="#!">Link 4</a>
-                      </li>
-                    </ul>       
-                 </div>
-              </div>
-            </div>
-        
-            <!-- Copyright -->
-            <div class="footer-copyright text-center gray-text py-3">© 2019 Copyright:
-              <a href="#"> copy.com</a>
-            </div>
-            <!-- Copyright -->
-        
-          </footer>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <?php include "footer.php"?>
+   
 <!-- </body>
 </html> -->
