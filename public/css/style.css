@@ -1,0 +1,121 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+header{
+    background: url("../images/bg.jpg") no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.navbar-nav{
+    color:#fff;
+    font-weight: 500;
+}
+.navbar-dark .navbar-nav .nav-link{
+    color:#fff;
+    transition: color .3s;
+}
+.navbar-nav .nav-item.active .nav-link,
+.navbar-nav .nav-item:hover .nav-link {
+    color: #EB2B63;
+}
+.primary_btn{
+    background: #EB2B63;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 20px;
+    color:#fff;
+    font-weight: 500;
+}
+.secondary_btn{
+    background: transparent;
+    border: 1px solid #EB2B63;
+    border-radius: 10px;
+    padding: 5px 20px;
+    color:#fff;
+    font-weight: 500;
+}
+
+.header_content .btn:hover{
+    color:#fff;
+}
+.header_title{
+    font-size: 5em;
+    text-transform: capitalize;
+}
+.section_subtitle{
+    font-size: .9em;
+    color:rgba(0,0,0,.5);
+    text-transform: uppercase;
+}
+.section_title{
+    font-size: 2.5em;
+    font-weight: bold;
+}
+.content_item i{
+    font-size: 3.5em;
+    color: #EB2B63;
+}
+.content_item p{
+    color: rgba(0,0,0,.5);
+}
+.content_item h4{
+    font-weight: 600;
+}
+.contact{
+    background: url("../images/bg.jpg") no-repeat;
+    background-position: center top;
+    
+}
+/* .contact form{
+    width: 50%;
+    margin: 0 auto;
+} */
+.banner{
+    background: url("../images/banner-bg.jpg") no-repeat;
+    background-position: center center;
+}
+.banner .row div .primary_btn {
+    padding: 10px 50px;
+}
+.banner .btn:hover{
+    color:#fff;
+}
+.banner p{
+    color: rgba(255,255,255,.5);
+}
+.contact .section_subtitle{
+    color: rgba(255,255,255,.5)
+}
+.work_step i {
+    font-size: 3.5em;
+    color: #EB2B63;
+    margin-bottom: 20px;
+}
+.btn:hover{
+    color:#fff;
+}
+.gray-text{
+    color: rgba(255,255,255,.5);
+}
+footer{
+    background: #200545;
+}
+
+.auth_modal .modal-content{
+    background: #200545;
+}
+.modal .btn:hover{
+    color:#fff;
+}
+@media screen and (max-width: 1000px) {
+    .header_title{
+        font-size: 2.5em;
+        margin-top: 100px;
+        margin-bottom: 20px;
+    }
+    .header_content{
+        padding: 0;
+    }
+
+}
+  
