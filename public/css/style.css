@@ -108,9 +108,19 @@ footer{
     color:#fff;
 }
 .signup{
-    background-color: #200545;
+    background-color: #20054505;
     height: 100vh;
     width: 100vw;
+    
+}
+.signup h1 {
+    color:#EB2B63;
+    font-size: 2em;
+    text-align: center;
+}
+.signup form{
+    color:#EB2B63;
+    font-weight: 600;
 }
 @media screen and (max-width: 1000px) {
     .header_title{
