@@ -44,4 +44,25 @@ class Model_Login extends Model {
             return true;
         }
     }
+
+    public function login_user($user_data){
+        $db = $this->db;
+
+        $email = htmlentities(mysqli_real_escape_string($db, $user_data["email"]));
+        $password = htmlentities(mysqli_real_escape_string($db, $user_data["password"]));
+
+        $query = "SELECT id, email, pass_hash FROM users WHERE email = '$email'";
+        $result = mysqli_query($db, $query) or die("Ошибка " . mysqli_error($db)); 
+
+        if(mysqli_num_rows($result) < 1){
+            return false;
+        } else {
+            $row = $result->fetch_assoc();
+            if(password_verify($user_data["password"], $row["pass_hash"])){
+                return $row;
+            } else {
+                return false;
+            }
+        }
+    }
 }

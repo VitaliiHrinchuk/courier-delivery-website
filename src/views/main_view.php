@@ -28,12 +28,12 @@
                             </div>
                          <button type="submit" class="btn primary_btn d-block mx-auto">Вхід</button>
                         </form>
-                        <a href="#" class="btn secondary_btn px-4">Зареєструватись</a>
+                        <a href="/login/registration/" class="btn secondary_btn px-4">Зареєструватись</a>
                     </div>
                   </div>
                 </div>
               </div>
-    <header>
+    <header class="mainpage_header">
         <nav>
             <nav class="navbar navbar-expand-lg navbar-dark pb-5 text-white ">
                 <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarTogglerDemo01" aria-expanded="true" aria-label="Toggle navigation">
@@ -159,7 +159,7 @@
                 <p>Proin gravida nibh vel velit auctor aliquet, aenean sollicitudin lorem quis bibendum auctor, nisi elit consequat ipsum</p>
             </div>
             <div class="col-3 my-auto">
-                <a href="#" class="btn primary_btn ">Get Started</a>
+                <a href="/login/registration/" class="btn primary_btn ">Get Started</a>
             </div>
             
         </div>

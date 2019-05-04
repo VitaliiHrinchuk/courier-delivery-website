@@ -15,4 +15,17 @@ class Controller {
 	{
 		// todo	
 	}
+
+	public function check_user(){
+		if(!isset($_SESSION)) 
+		{ 
+			session_start(); 
+		} 
+
+		if(!empty($_SESSION) && $_SESSION["authorized"] && isset($_SESSION["user"])){
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

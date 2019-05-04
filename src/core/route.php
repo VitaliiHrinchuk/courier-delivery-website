@@ -19,13 +19,23 @@ class Route
 		// получаем имя контроллера
 		if ( !empty($routes[1]) )
 		{	
-			$controller_name = $routes[1];
+			if(strpos($routes[1], '?') !== false){
+				$controller_name = stristr($routes[1], '?', true);
+			} else{
+				$controller_name = $routes[1];
+			}
+			
 		}
 		
 		// получаем имя экшена
 		if ( !empty($routes[2]) )
 		{
-			$action_name = $routes[2];
+			if(strpos($routes[2], '?') !== false){
+				$action_name  = stristr($routes[2], '?', true);
+			} else{
+				$action_name = $routes[2];
+			}
+
 		}
 
 		// добавляем префиксы
@@ -61,6 +71,7 @@ class Route
 			правильно было бы кинуть здесь исключение,
 			но для упрощения сразу сделаем редирект на страницу 404
 			*/
+			echo $controller_path;
 			Route::ErrorPage404();
 		}
 		

@@ -7,22 +7,32 @@ class Controller_Login extends Controller{
         $this->view = new View();
     }
     function action_index(){
-        if(isset($_POST["email"]) && isset($_POST["password"])){
-            if($_POST["email"] == "admin@admin.com" && $_POST["password"] == "admin"){
-                $data["login_status"] = true;
-            } else {
-                $data["login_status"] = false;
-                $data["login_msg"] = "Wrong data";
+        if(empty($_POST)){
+            $this->view->generate('login_view.php', 'template_view.php', null);
+        } else {
+            if(isset($_POST["email"]) && isset($_POST["password"])){
+                $user_data["email"] = $_POST["email"];
+                $user_data["password"] = $_POST["password"];
+                
+                $result = $this->model->login_user($user_data);
+                if($result !== false){
+                    
+                    
+                    session_start();
+
+                    $_SESSION["authorized"] = true;
+                    $_SESSION["user"] = $result["email"];
+                    $_SESSION["user_id"] = $result["id"];
+    
+                    header("Location: /user/");
+    
+                } else {
+                    $data["login_status"] = false;
+                    $this->view->generate('login_view.php', 'template_view.php', $data);
+                }
             }
-        } else {
-            $data["login_status"] = false;
-            $data["login_msg"] = "Miss data";
         }
-        if($data["login_status"] == true){
-            $this->view->generate('user_view.php', 'template_view.php', $data);
-        } else {
-            $this->view->generate('login_view.php', 'template_view.php', $data);
-        }
+        
         
     }
     function action_registration(){
@@ -36,7 +46,7 @@ class Controller_Login extends Controller{
 
                 if(!$this->model->check_email_exist($_POST["email"])){
                     $data["registered"] = false;
-                    $data["msg"] = "Ця електронна адреса вже існує";
+                    $data["err_type"] = "mail_exist";
                     $this->view->generate('registration_view.php', 'template_view.php', $data);
                 } else {
                     $pass_hash = password_hash($_POST["password"],PASSWORD_BCRYPT);
