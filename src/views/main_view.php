@@ -19,8 +19,15 @@
     </style>
         <div class="auth_modal modal fade text-white" id="modalAuth" tabindex="-1" role="dialog" aria-labelledby="modalAuthTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content py-5">
+                    
+                  <div class="modal-content pb-5">
+                    <div class="modal-header border-0">
+                        <span class="modal_close px-2 ml-auto" data-dismiss="modal"><i class="fas fa-times"></i></span>
+                    </div>
+                  
+                  
                     <div class="d-flex flex-column align-items-center">
+                        
                         <h3>Вхід</h3>
                         <form class="py-4" action="/login" method="POST" >
                             <div class="form-group">

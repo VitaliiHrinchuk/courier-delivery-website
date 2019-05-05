@@ -42,7 +42,7 @@ class Controller_User extends Controller{
             } else {
                 $user_data = $this->model->get_current_user_data();
                 if($this->model->edit_profile($_POST)){
-                    header("Location: /user?id=".$user_data["id"]);
+                    header("Location: /user");
                 } else {
 
                 }

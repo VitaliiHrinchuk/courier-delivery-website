@@ -135,11 +135,39 @@ footer{
     color:#EB2B63;
     font-weight: 500;
 }
+.profile .offers {
+    background: #fff;
+    border: 1px solid #EB2B63;
+    box-shadow: 5px 5px 15px rgba(0,0,0,.15);
+    font-size: .9em;
+}
+.profile .offers h5{
+    color: #EB2B63;
+    font-size: 1.1em;
+}
+.profile .offers .text{
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Запрещаем перенос строк */
+    overflow: hidden;
+}
+.profile .secondary_btn{
+    padding: 3px;
+    border-radius: 3px;
+    color: #EB2B63;
+    font-size: .7em;
+}
 .vacancy{
     border-bottom: 1px solid #EB2B63;
     font-size: .8em;
 }
-.vacancy .primary_btn, .resume .primary_btn{
+.link_btn{
+    padding: 0;
+    background: transparent;
+    color:  #EB2B63;
+    border: none;
+    font-weight: 500;
+}
+.vacancy .primary_btn, .resume .primary_btn {
     padding: 0;
     background: transparent;
     color:  #EB2B63;
@@ -188,6 +216,33 @@ footer{
     font-weight: 600;
     font-size: .8em;
     float: right;
+}
+.modal_message{
+    font-size: .8em;
+}
+.modal_message h3{
+    font-size: 1.5em;
+}
+.modal_close{
+  color: #EB2B63;
+  cursor: pointer;
+}
+.list .offer_description{
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Запрещаем перенос строк */
+    overflow: hidden;
+}
+.list_item{
+    font-size: .9em;
+}
+.list .btn:hover{
+    color:#EB2B63;
+}
+.list i{
+    color: #EB2B63;
+}
+.list .tag{
+    font-size: .8em;
 }
 @media screen and (max-width: 1000px) {
     .header_title{

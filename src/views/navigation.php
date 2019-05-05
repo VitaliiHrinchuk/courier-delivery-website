@@ -13,7 +13,7 @@
                         <a class="nav-link" href="/user">Профіль </a>
                       </li>
                       <li class="nav-item m-1">
-                        <a class="nav-link" href="#">Кур'єрські пропозиції</a>
+                        <a class="nav-link" href="/offers/">Кур'єрські пропозиції</a>
                       </li>
                       <li class="nav-item m-1">
                         <a class="nav-link" href="/vacancy/add/">Дадати вакансію</a>

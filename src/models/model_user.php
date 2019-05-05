@@ -83,6 +83,14 @@
 			 };
 
 
+			 $query_messages = "SELECT offering_message.id ,offer.name AS offer, users.name AS user, offering_message.text, offering_message.creation_date FROM offering_message LEFT JOIN offer ON offering_message.offer_id = offer.id LEFT JOIN users ON offering_message.customer_id = users.id WHERE offering_message.user_id = '$user_id'";
+			 $message_result = mysqli_query($db, $query_messages) or die("Ошибка " . mysqli_error($db));
+
+			 $row["messages"] = array();
+			 while($message_row = mysqli_fetch_assoc($message_result)) {
+				array_push($row["messages"],$message_row);
+			 };
+
 			return $row;
          } else {
             return false;
