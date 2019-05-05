@@ -6,8 +6,23 @@ class Controller_Vacancy extends Controller{
     }
 
     function action_index(){
+
+
         if(!$this->check_user()){
             header("Location: /login");
+        } else {
+            
+            if(!empty($_GET) && isset($_GET["id"])){
+
+
+                $vacancy = $this->model->get_vacancy($_GET["id"]);
+                if($vacancy !== false){
+                    $this->view->generate("vacancy_view.php", "template_view.php", $vacancy);
+                } else {
+                    Route::ErrorPage404();
+                }
+                
+            }
         }
         
     }
@@ -34,6 +49,47 @@ class Controller_Vacancy extends Controller{
             header("Location: /login");
         }
         
+    }
+
+    function action_comment(){
+        if($this->check_user()){
+            if(!empty($_POST) && isset($_POST["comment"]) && isset($_POST["offer_id"])){
+    
+                $comment_data["offer_id"] = $_POST["offer_id"];
+                $comment_data["text"] = $_POST["comment"];
+                if($this->model->add_comment($comment_data)){
+                    header("Location: /vacancy?id=".$_POST["offer_id"]);
+                } else {
+                    header("Location: /");
+                }
+            } else {
+                header("Location: /vacancy?id=".$_POST["offer_id"]);
+            }
+
+        } else {
+            header("Location: /login");
+        }
+    }
+
+    function action_offering(){
+        if($this->check_user()){
+            if(!empty($_POST) && isset($_POST["message"]) && isset($_POST["offer_id"]) && isset($_POST["author_id"])){
+    
+                $message_data["offer_id"] = $_POST["offer_id"];
+                $message_data["message"] = $_POST["message"];
+                $message_data["author_id"] = $_POST["author_id"];
+                if($this->model->send_offer($message_data)){
+                    header("Location: /vacancy?id=".$_POST["offer_id"]);
+                } else {
+                   header("Location: /");
+                }
+            } else {
+                header("Location: /vacancy?id=".$_POST["offer_id"]);
+            }
+
+        } else {
+            header("Location: /login");
+        }
     }
 
 }

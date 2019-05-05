@@ -8,7 +8,7 @@ body{
     background-size: cover;
 }
 .standart_header{
-    background: #fff;
+    background: #200545;
     box-shadow: 1px 0px 10px rgba(0,0,0,.25);
 }
 .navbar-nav{
@@ -148,8 +148,46 @@ footer{
     font-size: .9em;
 }
 .vacancy_add .content{
-    color: #EB2B63;;
+    color: #EB2B63;
     background: #fff;
+}
+
+.vacancy_detail .author .author_info{
+    font-size: .8em;
+}
+.vacancy_detail .author h4{
+    font-size: 1.5em;
+}
+.vacancy_description{
+    white-space: pre-wrap;
+}
+.tag{
+    padding: 3px 5px;
+    border: 1px solid #EB2B63;
+    color: #EB2B63;
+    border-radius: 3px;
+}
+.comments{
+    border: 1px solid #200545;
+    border-radius: 4px;
+}
+.comments .name{
+    cursor: pointer;
+    font-size: 1.7em;
+}
+
+.comments .text{
+    white-space: pre-wrap;
+    font-size: .9em;
+}
+.comments .primary_btn{
+    padding: 0;
+    background: transparent;
+    color:  #EB2B63;
+    border: none;
+    font-weight: 600;
+    font-size: .8em;
+    float: right;
 }
 @media screen and (max-width: 1000px) {
     .header_title{

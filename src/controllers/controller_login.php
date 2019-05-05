@@ -59,7 +59,7 @@ class Controller_Login extends Controller{
                     
                     $result = $this->model->add_user($user_data);
                     if($result){
-                        header("Location: /user");
+                        header("Location: /login");
                     } else {
                         $this->view->generate('registration_view.php', 'template_view.php', $result);
                     }

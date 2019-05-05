@@ -1,6 +1,6 @@
 <header class="standart_header mb-4">
         <nav>
-            <nav class="navbar navbar-expand-lg navbar-light  text-white ">
+            <nav class="navbar navbar-expand-lg navbar-dark  text-white ">
                 <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarTogglerDemo01" aria-expanded="true" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
