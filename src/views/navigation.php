@@ -6,11 +6,15 @@
                 </button>
                 <a class="navbar-brand" href="#">
                   DeliverCLub
+                  
                 </a>
                 <div class="collapse navbar-collapse " id="navbarNav">
                     <ul class="navbar-nav ml-auto ">
                       <li class="nav-item  m-1">
                         <a class="nav-link" href="/user">Профіль </a>
+                      </li>
+                      <li class="nav-item  m-1">
+                        <a class="nav-link" href="/user/messages">Повідомлення <?php echo $_SESSION["unread_msg"] > 0 ? '<span class="msg_unread">'.$_SESSION["unread_msg"].'</span>' : '' ;?></a>
                       </li>
                       <li class="nav-item m-1">
                         <a class="nav-link" href="/offers/">Кур'єрські пропозиції</a>
@@ -26,3 +30,4 @@
               </nav>
         </nav>
 </header>
+

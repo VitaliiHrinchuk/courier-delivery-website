@@ -1,4 +1,10 @@
 <?php include "navigation.php";?>
+<style>
+    body{
+        background: #fff;
+    }
+</style>
+
 <section class="offers_list container">
     <form class="filter" action="">
         <div class="form-row">
@@ -30,24 +36,76 @@
         </div>
     </form>
     <div class="list  py-3">
-        <div class="list_item pt-4 col-8 border-top">
-            <div class="d-flex align-items-center mb-2">
-                <h3 class="font-weight-normal"><a href="#" class="btn link_btn">Назва</a></h3>
-                <span class="ml-auto">3000 грн.</span>
-            </div>
-            <div class="my-2">
-                <span class="tag mr-2 ">DSADAS</span>
-            </div>
-            <div class="offer_description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aperiam soluta, doloribus tempora beatae repellat corporis iure accusamus laudantium perferendis magni dolorem amet ex deleniti reiciendis? Modi deleniti dicta excepturi magni dolorum unde dolor consequuntur nobis iste? Eius quas hic nihil iure maxime voluptas quos fugit cumque, ut suscipit ipsam dolore vitae commodi modi nobis, officia incidunt iste sit, consequuntur in? Labore nostrum, autem beatae temporibus provident illo distinctio a eum adipisci molestias assumenda consequatur laudantium? Quod, autem placeat necessitatibus sunt quidem explicabo ipsum rem reiciendis eveniet aut dicta temporibus asperiores, repellendus accusantium in sed, repudiandae similique et. Voluptas ex ducimus officia alias consequuntur, tenetur veniam voluptatum sapiente, recusandae velit consequatur. Architecto ut itaque provident a cum odio impedit neque delectus porro, eius repellat nisi error? Ducimus impedit in iusto doloremque officiis dolore officia libero veritatis ratione velit voluptatem odit aspernatur, tempore aliquam accusamus numquam, laudantium dolor consequuntur. Corrupti, tempore aliquam!</div>
-            
-            <div class="d-flex align-items-center mt-2">
-                <span>Автор: <a href="#" class="btn link_btn">Вася</a></span>
-                <span class="ml-auto mr-3 info"><i class="far fa-eye"></i> 123</span>
-                <span class="info"><i class="far fa-comment-dots"></i> 123</span>
-            </div>
+        <?php
+        foreach ($data["offers"] as $key => $value) {
+            echo '<div class="list_item pt-4 col-12 col-md-10 col-lg-8 border-top">
+                    <div class="d-flex align-items-center ">
+                        <h3 class="font-weight-normal"><a href="/vacancy?id='.$value['offer_id'].'" class="btn link_btn">'.$value['offer_name'].'</a></h3>
+                        <span class="ml-auto">'.$value['avg_price'].' грн.</span>
+                    </div>
+                    <div class="">
+                    '.$value['city'].'
+                    </div>';
 
-        </div>
+            $tags = explode(",",$value["tags"]);
+
+            echo '<div class="my-2">';
+            foreach ($tags as $tag_key => $tag) {
+                    echo '<span class="tag mr-2 ">'.$tag.'</span>';
+
+            }
+            echo '</div>';
+
+            echo '<div class="offer_description">'.$value["text"].'</div>
+                    
+                    <div class="d-flex align-items-center mt-2">
+                        <span>Автор: <a href="/user?id='.$value["author_id"].'" class="btn link_btn">'.$value["author"].'</a></span>
+                        <span class="ml-auto mr-3 info"><i class="far fa-eye"></i> '.$value["views"].'</span>
+                        <span class="info"><i class="far fa-comment-dots"></i> '.$value["comments"].'</span>
+                    </div>
+
+                </div>';
+        }
+            
+
+        ?>
+    
     </div>
+    <nav aria-label="...">
+  <ul class="pagination">
+      
+      <?php 
+        $num = 5;
+        $total = ceil(intval($data["offer_count"]) / $num);
+        
+        $prev = intval($data["current_offset"]) > 0 ? intval($data["current_offset"])+5 : 0 ;
+
+        echo '<li class="page-item '.(intval($data["current_offset"]) == 0 ? 'disabled' : '' ).'  ">
+                <a class="page-link" href="/offers?offset='.$prev.'" tabindex="-1">Previous</a>
+              </li>';
+
+        for ($i=0; $i <= $total; $i++) {    
+            $cur_str = (ceil(intval($data["current_offset"]) / $num) + 1) == $i + 1?  "active" :  "" ;
+            echo '<li class="page-item '.$cur_str.'"><a class="page-link" href="/offers?offset='.$i*$num.'">'.($i+1).'</a></li>';
+        }
+
+        $next = intval($data["current_offset"]) < $total ? intval($data["current_offset"])+5 : 0 ;
+
+        echo '<li class="page-item '.(intval($data["current_offset"]) >= ceil(intval($data["offer_count"])) ? 'disabled' : '' ).'  ">
+                <a class="page-link" href="/offers?offset='.$next.'" tabindex="-1">Next</a>
+              </li>';
+      ?>
+    
+    <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item active">
+      <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+    </li> -->
+<!--     
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li> -->
+  </ul>
+</nav>
 </section>
 <script src='/public/js/cities_data.json'></script>
 

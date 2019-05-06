@@ -83,13 +83,13 @@
 			 };
 
 
-			 $query_messages = "SELECT offering_message.id ,offer.name AS offer, users.name AS user, offering_message.text, offering_message.creation_date FROM offering_message LEFT JOIN offer ON offering_message.offer_id = offer.id LEFT JOIN users ON offering_message.customer_id = users.id WHERE offering_message.user_id = '$user_id'";
-			 $message_result = mysqli_query($db, $query_messages) or die("Ошибка " . mysqli_error($db));
+			//  $query_messages = "SELECT offering_message.id ,offer.name AS offer, users.name AS user, offering_message.text, offering_message.creation_date FROM offering_message LEFT JOIN offer ON offering_message.offer_id = offer.id LEFT JOIN users ON offering_message.customer_id = users.id WHERE offering_message.user_id = '$user_id'";
+			//  $message_result = mysqli_query($db, $query_messages) or die("Ошибка " . mysqli_error($db));
 
-			 $row["messages"] = array();
-			 while($message_row = mysqli_fetch_assoc($message_result)) {
-				array_push($row["messages"],$message_row);
-			 };
+			//  $row["messages"] = array();
+			//  while($message_row = mysqli_fetch_assoc($message_result)) {
+			// 	array_push($row["messages"],$message_row);
+			//  };
 
 			return $row;
          } else {
@@ -116,5 +116,22 @@
         } else {
             return false;
         }
+	}
+
+
+	public function get_messages(){
+		$db = $this->db;
+		$user_id = $_SESSION['user_id'];
+		$query_messages = "SELECT offering_message.id ,offer.name AS offer, users.name AS user, offering_message.text, offering_message.creation_date FROM offering_message LEFT JOIN offer ON offering_message.offer_id = offer.id LEFT JOIN users ON offering_message.customer_id = users.id WHERE offering_message.user_id = '$user_id'";
+		$message_result = mysqli_query($db, $query_messages) or die("Ошибка " . mysqli_error($db));
+
+		$row["messages"] = array();
+		while($message_row = mysqli_fetch_assoc($message_result)) {
+		   array_push($row["messages"],$message_row);
+		};
+
+		$change_status_query = "UPDATE offering_message SET viewed = 1 WHERE user_id = '$user_id'";
+		$change_status_result = mysqli_query($db, $change_status_query) or die("Ошибка " . mysqli_error($db));
+		return $row;
 	}
  }

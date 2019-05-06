@@ -22,4 +22,16 @@ class Model
 		// todo
 
 	}
+	public function get_unread_msg(){
+		$db = $this->db;
+
+		$user_id = $_SESSION['user_id'];
+		$query_messages = "SELECT COUNT(*) FROM offering_message WHERE user_id = '$user_id' AND viewed = 0";
+		$message_result = mysqli_query($db, $query_messages) or die("Ошибка " . mysqli_error($db));
+
+		$row = mysqli_fetch_assoc($message_result);
+
+		return $row["COUNT(*)"];
+
+	}
 }

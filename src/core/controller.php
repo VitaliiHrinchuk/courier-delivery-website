@@ -8,6 +8,7 @@ class Controller {
 	function __construct()
 	{
 		$this->view = new View();
+		$this->model = new Model();
 	}
 	
 	// действие (action), вызываемое по умолчанию
@@ -23,6 +24,7 @@ class Controller {
 		} 
 
 		if(!empty($_SESSION) && $_SESSION["authorized"] && isset($_SESSION["user"])){
+			$_SESSION["unread_msg"] = $this->model->get_unread_msg();
 			return true;
 		} else {
 			return false;
