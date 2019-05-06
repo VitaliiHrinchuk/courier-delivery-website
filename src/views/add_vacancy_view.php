@@ -29,31 +29,11 @@
                 }
             ?>
             </div>
-            
-            <!-- <div class="form-check form-check-inline pl-3">
-                <input class="form-check-input" type="checkbox" value="test" id="tag-1" name="tag">
-                <label class="form-check-label" for="tag-1">
-                    Test 1 
-                </label>
+            <div class="form-group ">
+                <label for="vacancy_name ">Ціна</label>
+                <input type="number" name="avg_price" class="form-control" id="avg_price"  placeholder="">
+                <small id="price_help" class="form-text text-muted">Середня ціна, яку ви пропонуєте за вашу послугу</small>
             </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" value="test" id="tag-1" name="tag">
-                <label class="form-check-label" for="tag-1">
-                    Test 1 
-                </label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" value="test" id="tag-1" name="tag">
-                <label class="form-check-label" for="tag-1">
-                    Test 1 
-                </label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" value="test" id="tag-1" name="tag">
-                <label class="form-check-label" for="tag-1">
-                    Test 1 
-                </label>
-            </div> -->
             <button type="submit" class="btn primary_btn d-block mx-auto mt-5 col-2">Додати</button>
 
         </form>

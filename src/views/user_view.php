@@ -42,7 +42,7 @@
                 <h5>Вакансії</h5>
                 <?php
                     foreach ($data["offers"] as $key => $value) {
-                        $status = $value["status"] == 1 ? "Активна" : "Неактивна";
+                        $status = $value["active_status"] == 1 ? "Активна" : "Неактивна";
                         echo "  <div class='vacancy p-2'>
                                     <div>".$value["name"]."</div>
                                     <div>".$status ."</div>

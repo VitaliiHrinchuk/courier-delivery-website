@@ -4,13 +4,13 @@
         background: #fff;
     }
 </style>
-
+<!-- <?php  print_r($data["offer_count"]); ?> -->
 <section class="offers_list container">
-    <form class="filter" action="">
+    <form class="filter" action="/offers" method="GET">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="search">Пошук</label>
-                <input type="text" class="form-control form-control-sm" id="search" placeholder="Доставка ">
+                <input type="text" class="form-control form-control-sm" id="search" placeholder="Доставка " name="search">
             </div>
         </div>
         <div class="form-row">
@@ -24,6 +24,11 @@
                 <label for="tagSelect">Тип</label>
                 <select id="tagSelect" class="form-control form-control-sm" name="tag">
                     <option value=""></option>
+                    <?php 
+                        foreach ($data["tags"] as $key => $value) {
+                            echo '<option value="'.$value.'">'.$value.'</option> ';
+                        }
+                    ?>
                 </select>
             </div>
             
@@ -34,6 +39,8 @@
                    Транспорт
             </label>
         </div>
+        <input type="hidden" name="offset" value='0'>
+        <button type="submit" class="btn primary_btn mx-auto mt-3 d-inline">Примінити фільтри</button>
     </form>
     <div class="list  py-3">
         <?php

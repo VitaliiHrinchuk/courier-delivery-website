@@ -29,9 +29,10 @@ class Model_Vacancy extends Model {
 
         $name = htmlentities(mysqli_real_escape_string($db, $data["name"]));
         $text = htmlentities(mysqli_real_escape_string($db, $data["text"]));
+        $avg_price = htmlentities(mysqli_real_escape_string($db, $data["avg_price"]));
         $author_id = htmlentities(mysqli_real_escape_string($db, $_SESSION["user_id"]));
 
-        $query = "INSERT INTO offer (id, name, text, author_id, status) VALUES(NULL, '$name', '$text', '$author_id', 1)";
+        $query = "INSERT INTO offer (id, name, text, author_id, active_status, avg_price) VALUES(NULL, '$name', '$text', '$author_id', 1, '$avg_price')";
 
         $vacancy_result = mysqli_query($db, $query) or die("Ошибка " . mysqli_error($db)); 
 

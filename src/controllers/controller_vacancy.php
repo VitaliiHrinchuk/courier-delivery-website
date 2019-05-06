@@ -38,6 +38,7 @@ class Controller_Vacancy extends Controller{
                     $vacancy_data["name"] = $_POST['vacancy_name'];
                     $vacancy_data["text"] = $_POST['vacancy_desc'];
                     $vacancy_data["tags"] = $_POST['tags'];
+                    $vacancy_data["avg_price"] = $_POST['avg_price'];
                     $this->model->add_vacancy($vacancy_data);
                     header("Location: /user");
                 } else{
