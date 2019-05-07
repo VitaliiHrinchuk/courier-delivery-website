@@ -192,6 +192,8 @@ footer{
     border: 1px solid #EB2B63;
     color: #EB2B63;
     border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 3px;
 }
 .comments{
     border: 1px solid #200545;
@@ -253,6 +255,10 @@ footer{
     border-radius: 2px;
     padding: 3px;
     font-size: .6em;
+}
+.filter .primary_btn{
+    font-size: .8em;
+    padding: 5px 8px;
 }
 @media screen and (max-width: 1000px) {
     .header_title{

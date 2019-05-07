@@ -129,4 +129,14 @@ class Model_Vacancy extends Model {
             return false;
         }
     }
+
+    public function set_vacancy_viewed($id){
+        $db = $this->db;
+
+        $id = mysqli_real_escape_string($db, $id);
+
+        $query = "UPDATE offer  SET views = views + 1 WHERE id = '$id'";
+
+        $result =  mysqli_query($db, $query) or die("Ошибка " . mysqli_error($db));
+    }
 }

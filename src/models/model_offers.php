@@ -52,13 +52,25 @@ class Model_Offers extends Model {
         //         LEFT JOIN tags ON (tags.id = offer_tags.tag_id )
         //     ";
 
-        $query = "SELECT offer.id , offer.name AS offer_name, offer.text, offer.author_id, offer.avg_price, offer.views, GROUP_CONCAT(DISTINCT tags.name ORDER BY tags.name) AS tags, users.name as author, users.hasTransport, users.city, COUNT(comments.id) AS comments FROM (offer) LEFT JOIN comments ON (offer.id = comments.offer_id) LEFT JOIN users ON (offer.author_id = users.id) LEFT JOIN offer_tags ON (offer.id = offer_tags.offer_id ) LEFT JOIN tags ON (tags.id = offer_tags.tag_id ) WHERE users.city='Вінниця'";
+        $query = "SELECT offer.id , offer.name AS offer_name, offer.text, offer.author_id, offer.avg_price, offer.views, 
+                        GROUP_CONCAT(DISTINCT tags.name ORDER BY tags.name) AS tags, users.name as author, 
+                        users.hasTransport, users.city, COUNT(comments.id) AS comments 
+                        
+                        FROM (offer) 
+                            LEFT JOIN comments ON (offer.id = comments.offer_id) 
+                            LEFT JOIN users ON (offer.author_id = users.id) 
+                            LEFT JOIN offer_tags ON (offer.id = offer_tags.offer_id ) 
+                            LEFT JOIN tags ON (tags.id = offer_tags.tag_id ) 
+                            
+                            ";
       
 
        if($options == null){
            $query .= " GROUP BY offer.publish_date DESC LIMIT ?, 5";
            $stmt = mysqli_prepare($db, $query);
-           $this->count_offers(''."WHERE offer.active_status = 1");
+           
+           $this->count_offers('');
+           
        } else {
 
             $conditions = array();
@@ -69,7 +81,7 @@ class Model_Offers extends Model {
             }
             if($options["city"] != null) {
                 $city = htmlentities(mysqli_real_escape_string($db, $options["city"]));
-                $conditions[] = "users.city='$city'";
+                $conditions[] = " users.city = '$city'";
             }
             if($options["tags"] != null) {
                 $tag = htmlentities(mysqli_real_escape_string($db, $options["tags"]));
@@ -81,15 +93,15 @@ class Model_Offers extends Model {
                 $conditions[] = "hasTransport='$transport'";
             }
             $condition_query = ' ';
-            // if (count($conditions) > 0) {
-            //     $condition_query = " WHERE " . implode(' AND ', $conditions);
-            //   }
-
+            if (count($conditions) > 0) {
+                $condition_query = " WHERE ".implode(' AND ', $conditions);
+              }
+   
            $query .= $condition_query . " GROUP BY offer.publish_date DESC LIMIT ?, 5";
            
            $stmt = mysqli_prepare($db, $query);
 
-              echo $query;
+              
               
         //    $stmt->bind_param('sssii', $search, $city, $tag, $transport, $offset);
               $this->count_offers($condition_query);
@@ -143,8 +155,13 @@ class Model_Offers extends Model {
     }
     function count_offers($condition_query){
         $db = $this->db;
-        $query_count  = "SELECT COUNT(*) AS offer_count FROM offer " . $condition_query;
+        $query_count  = "SELECT COUNT(offer.id) FROM offer 
+        LEFT JOIN users ON (offer.author_id = users.id) 
+        LEFT JOIN offer_tags ON (offer.id = offer_tags.offer_id ) 
+        LEFT JOIN tags ON (tags.id = offer_tags.tag_id )  " . $condition_query . " GROUP BY offer.id";
         $count = mysqli_query($db, $query_count) or die("Ошибка " . mysqli_error($db)); 
-        $this->offer_count = $count->fetch_assoc(); 
+
+        $this->offer_count = mysqli_num_rows ( $count); 
+        // $this->offer_count = $count->fetch_assoc();; 
     }
 }

@@ -14,9 +14,27 @@ class Controller_Vacancy extends Controller{
             
             if(!empty($_GET) && isset($_GET["id"])){
 
+                $id = $_GET['id'];
 
-                $vacancy = $this->model->get_vacancy($_GET["id"]);
+                $vacancy = $this->model->get_vacancy($id);
                 if($vacancy !== false){
+
+                    if(!isset($_COOKIE["viewed_offers"])){
+                        $viewed_array[] = $id;
+                   
+                        setcookie('viewed_offers', json_encode($viewed_array));
+                        $this->model->set_vacancy_viewed($id);
+                    } else {
+                        $viewed_array = json_decode($_COOKIE['viewed_offers']);
+                        if(!in_array($id, $viewed_array)){
+                            array_push($viewed_array, $id);
+                            setcookie('viewed_offers', json_encode($viewed_array));
+                            $this->model->set_vacancy_viewed($id);
+                        }
+                        
+                    }
+
+                    
                     $this->view->generate("vacancy_view.php", "template_view.php", $vacancy);
                 } else {
                     Route::ErrorPage404();

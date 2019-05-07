@@ -4,13 +4,14 @@
         background: #fff;
     }
 </style>
-<!-- <?php  print_r($data["offer_count"]); ?> -->
+
 <section class="offers_list container">
     <form class="filter" action="/offers" method="GET">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="search">Пошук</label>
-                <input type="text" class="form-control form-control-sm" id="search" placeholder="Доставка " name="search">
+                <input type="text" class="form-control form-control-sm" id="search" placeholder="Доставка " name="search" 
+                value="<?php if(isset($_GET["search"])) echo $_GET["search"];?>">
             </div>
         </div>
         <div class="form-row">
@@ -25,16 +26,23 @@
                 <select id="tagSelect" class="form-control form-control-sm" name="tag">
                     <option value=""></option>
                     <?php 
+                        $current = isset($_GET["tag"]) ? $_GET["tag"] : "" ;
+                        
                         foreach ($data["tags"] as $key => $value) {
-                            echo '<option value="'.$value.'">'.$value.'</option> ';
+                            $selected = $current == $value ? "selected" : "" ;
+                            echo '<option value="'.$value.'" '.$selected.' >'.$value.'</option> ';
                         }
                     ?>
                 </select>
             </div>
-            
         </div>
         <div class=" form-group form-check">
-            <input class="form-check-input " type="checkbox" id="transport" name="transport">
+            <input class="form-check-input " type="checkbox" id="transport" name="transport" 
+                <?php 
+                if (isset($_GET['transport'])){
+                    echo $_GET['transport'] == "on" ? "checked": '' ;
+                }
+                ?>>
             <label class="form-check-label" for="transport">
                    Транспорт
             </label>
@@ -91,14 +99,14 @@
                 <a class="page-link" href="/offers?offset='.$prev.'" tabindex="-1">Previous</a>
               </li>';
 
-        for ($i=0; $i <= $total; $i++) {    
+        for ($i=0; $i < $total; $i++) {    
             $cur_str = (ceil(intval($data["current_offset"]) / $num) + 1) == $i + 1?  "active" :  "" ;
             echo '<li class="page-item '.$cur_str.'"><a class="page-link" href="/offers?offset='.$i*$num.'">'.($i+1).'</a></li>';
         }
 
         $next = intval($data["current_offset"]) < $total ? intval($data["current_offset"])+5 : 0 ;
 
-        echo '<li class="page-item '.(intval($data["current_offset"]) >= ceil(intval($data["offer_count"])) ? 'disabled' : '' ).'  ">
+        echo '<li class="page-item '.(intval($data["current_offset"]) + 5 >= ceil(intval($data["offer_count"])) ? 'disabled' : '' ).'  ">
                 <a class="page-link" href="/offers?offset='.$next.'" tabindex="-1">Next</a>
               </li>';
       ?>
@@ -124,11 +132,18 @@ let cityArray = JSON.parse(cities).cities;
 
 let selectEl = document.getElementById('citySelect');
 
+var url_string = window.location.href; //window.location.href
+var url = new URL(url_string);
+var currentCity = url.searchParams.get("city");
+
+
+
 cityArray.forEach(element => {
     let optionEl = document.createElement('option');
     optionEl.innerHTML = element;
     optionEl.value = element;
 
+    if(element == currentCity) optionEl.setAttribute("selected", '');
     selectEl.appendChild(optionEl);
 });
 
