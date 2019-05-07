@@ -13,7 +13,7 @@ class Controller_Offers extends Controller{
         } else {
             $tags = $this->model->get_tags();
             if(empty($_GET)){
-                $pagination["offset"] = 5;
+                $pagination["offset"] = 0;
 
                 $data = $this->model->get_offer_data(null, $pagination);
                 $data["current_offset"] = 0;

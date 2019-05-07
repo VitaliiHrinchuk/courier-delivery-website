@@ -120,7 +120,7 @@ class Model_Vacancy extends Model {
         $text = mysqli_real_escape_string($db, $message["message"]);
         $user_id = mysqli_real_escape_string($db, $message["author_id"]);
 
-        $query = "INSERT INTO offering_message VALUES (NULL, '$offer_id', '$customer_id', '$user_id', '$text', NULL) ";
+        $query = "INSERT INTO offering_message (id, offer_id, customer_id, user_id, text) VALUES (NULL, '$offer_id', '$customer_id', '$user_id', '$text') ";
         $result =  mysqli_query($db, $query) or die("Ошибка " . mysqli_error($db));
 
         if($result){

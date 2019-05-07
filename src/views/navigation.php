@@ -5,7 +5,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <a class="navbar-brand" href="#">
-                  DeliverCLub
+                  ToDeliv
                   
                 </a>
                 <div class="collapse navbar-collapse " id="navbarNav">

@@ -68,7 +68,7 @@ class Model_Offers extends Model {
        if($options == null){
            $query .= " GROUP BY offer.publish_date DESC LIMIT ?, 5";
            $stmt = mysqli_prepare($db, $query);
-           
+
            $this->count_offers('');
            
        } else {
